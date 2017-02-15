@@ -1,2 +1,2 @@
 # zero-conf
-A java configuration library, support properties, yaml, json format.
+A configuration library for java, support properties, yaml, json and xml format.
