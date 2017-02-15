@@ -13,7 +13,7 @@ public class PropertiesConfigTest {
     @Test
     public void testLocalProperties(){
 
-        Config config = ConfigLoader.load("app.properties", Format.PROPERTIES);
+        Config config = ConfigLoader.load("classpath:app.properties", Format.PROPERTIES);
 
         System.out.println("app-name: "+ config.getString("app-name"));
         System.out.println("app-version: "+ config.getDouble("app-version"));

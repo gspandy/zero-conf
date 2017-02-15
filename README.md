@@ -19,7 +19,7 @@ A configuration library for java, support Java properties, yaml, json and xml fo
 ## API Example
 ### load Properties
 ```
-Config config = ConfigLoader.load("app.properties", Format.PROPERTIES);
+Config config = ConfigLoader.load("classpath:app.properties", Format.PROPERTIES);
 
 System.out.println("app-name: "+ config.getString("app-name"));
 System.out.println("app-version: "+ config.getDouble("app-version"));
@@ -27,28 +27,28 @@ System.out.println("proxy-allowed: "+ config.getBoolean("proxy-allowed"));
 System.out.println("read_timeout: "+ config.getInteger("read_timeout"));
 ```
 
-### read JSON
+### read classpath JSON
 ```
-Config config = ConfigLoader.load("app.json", Format.JSON);
+Config config = ConfigLoader.load("classpath:app.json", Format.JSON);
 Configuration conf = config.toJavaBean(Configuration.class);
 System.out.println(conf);
 ```
 
 ### read XML
 ```
-Config config = ConfigLoader.load("app.xml", Format.XML);
+Config config = ConfigLoader.load("classpath:app.xml", Format.XML);
 Configuration conf = config.toJavaBean(Configuration.class);
 System.out.println(conf);
 ```
 
 ### read YAML
 ```
-Config config = ConfigLoader.load("app.yml", Format.YAML);
+Config config = ConfigLoader.load("classpath:app.yml", Format.YAML);
 Configuration conf = config.toJavaBean(Configuration.class);
 System.out.println(conf);
 ```
 
-### read config file
+### read specified config file
 ```
 Config config = ConfigLoader.parseFile(new File("/config/app.yml"), Format.YAML);
 Configuration conf = config.toJavaBean(Configuration.class);

@@ -43,6 +43,9 @@ public class ConfigLoader {
     public static Config load(ClassLoader classLoader, String resourceName, Format format){
         InputStream in = null;
         try {
+            if(resourceName.startsWith("classpath:")){
+                resourceName = resourceName.substring("classpath:".length());
+            }
             in = classLoader.getResourceAsStream(resourceName);
             return ConfigParserFactory.createConfigParser(format).parse(in);
         } catch (Exception e) {
