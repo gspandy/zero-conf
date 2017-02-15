@@ -1,4 +1,4 @@
-package com.bytebeats.conf.util;
+package com.bytebeats.config.util;
 
 import java.io.Closeable;
 import java.io.IOException;
