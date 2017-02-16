@@ -1,4 +1,4 @@
-# zero-conf
+# zero-conf [![Build Status](https://travis-ci.org/TiFG/zero-conf.svg?branch=master)](https://travis-ci.org/TiFG/zero-conf)
 A configuration library for java, support Java properties, yaml, json and xml format.
 
 ## Features
