@@ -1,12 +1,13 @@
 package com.bytebeats.config;
 
-import com.bytebeats.config.exception.ConfigException;
 import com.bytebeats.config.factory.ConfigParserFactory;
 import com.bytebeats.config.http.HttpClient;
 import com.bytebeats.config.impl.SystemConfig;
+import com.bytebeats.config.util.ExceptionUtils;
 import com.bytebeats.config.util.IoUtils;
 import okhttp3.Request;
 import okhttp3.Response;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -49,7 +50,7 @@ public class ConfigLoader {
             in = classLoader.getResourceAsStream(resourceName);
             return ConfigParserFactory.createConfigParser(format).parse(in);
         } catch (Exception e) {
-            throw new ConfigException(e);
+            throw ExceptionUtils.castThrowable(e);
         } finally{
             IoUtils.closeQuietly(in);
         }
@@ -67,7 +68,7 @@ public class ConfigLoader {
             in = new FileInputStream(file);
             return ConfigParserFactory.createConfigParser(format).parse(in);
         } catch (Exception e) {
-            throw new ConfigException(e);
+            throw ExceptionUtils.castThrowable(e);
         } finally{
             IoUtils.closeQuietly(in);
         }
@@ -77,11 +78,11 @@ public class ConfigLoader {
         try {
             return parseURL(new URL(url), format);
         } catch (MalformedURLException e) {
-            throw new ConfigException(e);
+            throw ExceptionUtils.castThrowable(e);
         }
     }
 
-    public static Config parseURL(URL url, Format format){
+    public static Config parseURL(URL url, Format format) {
         Response response = null;
         try {
             Request request = new Request.Builder()
@@ -93,9 +94,9 @@ public class ConfigLoader {
 
             return ConfigParserFactory.createConfigParser(format).parse(response.body().byteStream());
         } catch (IOException e) {
-            throw new ConfigException(e);
+            throw ExceptionUtils.castThrowable(e);
         } catch (Exception e) {
-            throw new ConfigException(e);
+            throw ExceptionUtils.castThrowable(e);
         } finally {
             IoUtils.closeQuietly(response);
         }
